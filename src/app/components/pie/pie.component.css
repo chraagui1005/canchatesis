@@ -1,0 +1,6 @@
+/* Estilos para el pie de página */
+footer {
+  background-color: black;
+  width: 100%;
+  min-height: 100px; /* Ajusta la altura mínima según sea necesario */
+}

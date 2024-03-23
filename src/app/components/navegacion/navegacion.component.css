@@ -1,0 +1,26 @@
+/* Estilos para el pie de página */
+footer {
+  background-color: black;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 900; /* Asigna un z-index menor que el componente de navegación */
+}
+
+/* Estilos para el componente de navegación */
+.navbar {
+  position: relative;
+  z-index: 2; /* Asegura que el componente de navegación esté por encima del pie de página */
+}
+
+/* Estilos para el carrusel */
+#carouselExampleControls {
+  width: 100%;
+  height: calc(100vh - 100px); /* Resta el alto de la barra de navegación y el pie de página */
+}
+
+.carousel-item img {
+  height: calc(100vh - 100px); /* Ajusta la altura de las imágenes al espacio restante */
+  object-fit: cover;
+}
+

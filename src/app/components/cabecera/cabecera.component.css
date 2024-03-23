@@ -1,0 +1,9 @@
+header {
+  background: url(https://cdn.pixabay.com/photo/2020/05/07/04/01/digitization-5140071_1280.jpg);
+}
+
+/* Estilos para la cabecera */
+.jumbotron {
+  position: relative;
+  z-index: 900; /* Aseguramos que esté por debajo del componente de inicio y por encima del componente de navegación */
+}

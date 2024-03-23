@@ -2,10 +2,18 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
+import { InicioComponent } from './components/inicio/inicio.component';
+import { CabeceraComponent } from './components/cabecera/cabecera.component';
+import { NavegacionComponent } from './components/navegacion/navegacion.component';
+import { PieComponent } from './components/pie/pie.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    InicioComponent,
+    CabeceraComponent,
+    NavegacionComponent,
+    PieComponent
   ],
   imports: [
     BrowserModule
