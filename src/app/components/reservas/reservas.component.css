@@ -1,0 +1,69 @@
+/* reservas.component.css */
+
+.container {
+  padding: 20px;
+}
+
+.recuadro {
+  background-color: beige;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.imagen-recuadro {
+  width: 100%; /* Ajusta el ancho de la imagen según tus necesidades */
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabla th,
+.tabla td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.tabla th {
+  background-color: #f2f2f2;
+}
+
+.no-reservas {
+  color: red;
+  font-weight: bold;
+}
+
+/* reservas.component.css */
+
+.no-reservas {
+  background-color: beige;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  color: red;
+  font-weight: bold;
+}
+
+.frase-final {
+  position: relative;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.recuadro-azul {
+  background-color: #007bff; /* Color de fondo del recuadro azul */
+  padding: 20px;
+  color: #ffffff; /* Color del texto */
+  width: auto; /* Ancho del recuadro azul */
+  height: auto; /* Altura del recuadro azul */
+  margin: 0 auto; /* Centra el recuadro horizontalmente */
+}
+
+.frase-grande {
+  font-size: 30px; /* Tamaño de letra grande */
+  font-weight: bold; /* Texto en negrita */
+  text-align: center; /* Texto centrado */
+}

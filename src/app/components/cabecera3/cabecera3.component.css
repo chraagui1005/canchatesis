@@ -1,0 +1,167 @@
+/* cabecera.component.css */
+
+.cabecera-container {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Ocupa toda la altura de la página */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imagen {
+  width: 100%;
+  height: 100%; /* Ocupa toda la altura del contenedor */
+  object-fit: cover; /* Ajusta la imagen para cubrir el contenedor */
+}
+
+.botones-container {
+  position: absolute;
+  top: 50%; /* Sitúa el contenedor en la mitad de la altura del contenedor padre */
+  left: 50%; /* Sitúa el contenedor en la mitad del ancho del contenedor padre */
+  transform: translate(-50%, -50%); /* Centra el contenedor */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra horizontalmente los elementos */
+  justify-content: center; /* Centra verticalmente los elementos */
+}
+
+.volver-boton {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.volver-boton:hover {
+  background-color: darkred;
+}
+
+.boton {
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 10px;
+}
+
+.boton.active {
+  background-color: blue;
+}
+
+.boton:not(.active) {
+  background-color: black;
+}
+
+.boton:last-child {
+  margin-bottom: 0; /* Elimina el margen inferior del último botón */
+}
+
+.boton:hover {
+  background-color: #0056b3;
+}
+
+
+.botones-adicionales {
+  position: absolute;
+  top: 0; /* Sitúa el contenedor en la parte superior */
+  left: 0; /* Sitúa el contenedor en la parte derecha */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Alinea los elementos a la derecha */
+  justify-content: center; /* Centra verticalmente los elementos */
+  padding: 20px; /* Añade espacio entre los botones y el borde del contenedor */
+}
+/* Estilo para cada ítem dentro de botones-adicionales */
+.botones-adicionales .item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px; /* Espaciado entre ítems */
+}
+
+/* Estilo para la imagen de íconos */
+.botones-adicionales .icono {
+  width: 90px; /* Ajusta el tamaño de la imagen que contiene los íconos */
+  margin-right: 10px; /* Espaciado entre la imagen y el texto */
+}
+
+.bienvenido {
+  font-size: 40px; /* Tamaño de letra aumentado */
+  margin-left: 20px; /* Mueve el texto más a la derecha */
+  margin-right: auto; /* Mueve el texto más a la izquierda */
+  text-align: center; /* Centra horizontalmente el texto dentro del contenedor */
+  color: blue;
+  font-weight: bold;
+  margin-bottom: 5px; /* Espacio entre "¡Bienvenido Christian!" y "Recuperar clave" */
+}
+
+.texto {
+  cursor: pointer;
+  margin-bottom: 10px;
+  color: white;
+  /* Espacio entre "Recuperar clave" y "Cerrar sesión" */
+}
+
+.texto:hover {
+  color: blue; /* Cambia el color del texto al pasar el mouse sobre él */
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+}
+
+
+
+/* Estilos para el cuadro de contactenos */
+.contactenos-container {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 10px; /* Añade bordes redondeados */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Añade sombra */
+  text-align: center; /* Centra el contenido horizontalmente */
+}
+
+.contactenos-container h4 {
+  margin-top: 0;
+  margin-bottom: 15px; /* Espacio adicional abajo del título */
+}
+
+.contactenos-container ul {
+  padding-left: 20px;
+}
+
+.contactenos-container li {
+  list-style-type: none;
+  margin-bottom: 10px; /* Espaciado entre los elementos de la lista */
+}
+
+/* Estilos para el botón de cerrar */
+.cerrar-boton {
+  background-color: #dc3545; /* Color de fondo rojo */
+  color: white; /* Color del texto blanco */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Transición suave */
+  margin-top: 15px; /* Espacio superior al botón */
+}
+
+.cerrar-boton:hover {
+  background-color: #c82333; /* Color de fondo rojo más oscuro al pasar el mouse */
+}
+
+

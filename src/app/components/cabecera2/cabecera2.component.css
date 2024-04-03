@@ -1,0 +1,75 @@
+/* cabecera.component.css */
+.cabecera-container {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Ocupa toda la altura de la página */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+
+
+.imagen {
+  width: 100%;
+  height: 100%; /* Ocupa toda la altura del contenedor */
+  object-fit: cover; /* Ajusta la imagen para cubrir el contenedor */
+}
+
+/* cabecera.component.css */
+.botones-container {
+  position: absolute;
+  top: 50%; /* Sitúa el contenedor en la mitad de la altura del contenedor padre */
+  left: 50%; /* Sitúa el contenedor en la mitad del ancho del contenedor padre */
+  transform: translate(-50%, -50%); /* Centra el contenedor */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra horizontalmente los elementos */
+  justify-content: center; /* Centra verticalmente los elementos */
+}
+
+
+.volver-boton {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-bottom: 10px;
+
+}
+
+.volver-boton:hover {
+  background-color: darkred;
+}
+
+.boton {
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 10px;
+}
+
+.boton.active {
+  background-color: blue;
+}
+
+.boton:not(.active) {
+  background-color: black;
+}
+
+
+.boton:last-child {
+  margin-bottom: 0; /* Elimina el margen inferior del último botón */
+}
+
+.boton:hover {
+  background-color: #0056b3;
+}

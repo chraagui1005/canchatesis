@@ -1,0 +1,47 @@
+/* Estilos para el título */
+.titulo-registro {
+  color: #007bff; /* Color azul */
+  font-size: 36px; /* Tamaño de fuente */
+}
+
+/* Estilos para el formulario de registro */
+.formulario-registro {
+  max-width: 600px; /* Ancho máximo del formulario */
+  margin: 0 auto; /* Centrar horizontalmente */
+  padding: 20px; /* Espaciado interno */
+}
+
+.imagen-titulo {
+  position: relative;
+  top: -50px; /* Posiciona la imagen encima del título */
+  z-index: 1; /* Asegura que la imagen esté sobre el título */
+  width: 100px; /* Ajusta el tamaño de la imagen */
+}
+
+/* Estilos para los campos de entrada */
+.form-control {
+  border-radius: 5px; /* Bordes redondeados */
+  font-size: 18px; /* Tamaño de fuente */
+  padding: 10px; /* Espaciado interno */
+}
+
+/* Estilos para los mensajes de error */
+.invalid-feedback {
+  color: #dc3545; /* Color rojo */
+  font-size: 14px; /* Tamaño de fuente */
+  margin-top: 5px; /* Espacio superior */
+}
+
+/* Estilos para el botón de registro */
+.btn-registro {
+  position: relative; /*
+  width: 200px; /* Ancho */
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px; /* Espacio superior */
+  font-size: 20px; /* Tamaño de fuente */
+  padding: 12px; /* Espaciado interno */
+}

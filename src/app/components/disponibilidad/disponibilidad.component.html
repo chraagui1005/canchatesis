@@ -1,0 +1,39 @@
+<div class="container">
+  <h2 class="title">¿Elige la cancha que desea?</h2>
+  <select class="select" [(ngModel)]="selectedCourt" (change)="onCourtSelected()">
+    <option *ngFor="let court of courts" [value]="court">{{ court }}</option>
+  </select>
+</div>
+
+<div *ngIf="selectedCourt" class="calendar-container">
+  <h2 class="title">Calendario de Disponibilidad</h2>
+  <mat-calendar [selected]="selectedDate" (selectedChange)="onDateSelected($event)"></mat-calendar>
+  <div *ngIf="selectedDate && courtEntries.length > 0" class="details">
+    <h3>Horarios disponibles para el {{ selectedDate | date:'longDate' }}</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Horario de inicio</th>
+          <th>Horario de fin</th>
+          <th>Precio de la cancha</th>
+          <th>Estado</th>
+          <th>Seleccionar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let entry of courtEntries">
+          <td>{{ entry.horarioInicio }}</td>
+          <td>{{ entry.horarioFin }}</td>
+          <td>{{ entry.precioCancha }}</td>
+          <td>{{ entry.estado }}</td>
+          <td>
+            <button (click)="seleccionarHorario(entry)" [ngClass]="{ 'selected-button': entry.id === selectedEntry?.id }">
+              {{ entry.id === selectedEntry?.id ? 'Cancelar' : 'Seleccionar' }}
+            </button>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

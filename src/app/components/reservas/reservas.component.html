@@ -1,0 +1,51 @@
+<div class="container">
+  <img src="https://cdn.ttgtmedia.com/visuals/ComputerWeekly/Hero%20Images/sport-football-woman-master1305-adobe.jpg" alt="Imagen" class="imagen-recuadro">
+
+  <div class="recuadro">
+    <h1 class="titulo">Consulta de Reservas</h1>
+
+    <table class="tabla">
+      <thead>
+        <tr>
+          <th>Reserva ID</th>
+          <th>Horario Inicio</th>
+          <th>Horario Fin</th>
+          <th>Cancha</th>
+          <th>Nombre de la Bebida</th>
+          <th>Cantidad de Bebidas</th>
+          <th>Precio Total</th>
+          <th>Email</th>
+          <th>Acciones</th> <!-- Nueva columna para los botones de editar y eliminar -->
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngIf="reservas.length > 0 || !reservas; else noReservas">
+          <tr *ngFor="let reserva of reservas">
+            <td>{{ reserva.reservaId }}</td>
+            <td>{{ reserva.horarioInicio }}</td>
+            <td>{{ reserva.horarioFin }}</td>
+            <td>{{ reserva.canchaNombre }}</td>
+            <td>{{ reserva.bebidaId }}</td>
+            <td>{{ reserva.cantidadBebidas }}</td>
+            <td>{{ reserva.precioTotal }}</td>
+            <td>{{ reserva.email }}</td>
+            <td>
+              <button (click)="eliminarReserva(reserva)">Eliminar</button>
+            </td>
+          </tr>
+        </ng-container>
+        <ng-template #noReservas>
+          <tr>
+            <td colspan="9" class="text-center">No hay reservas disponibles.</td>
+          </tr>
+        </ng-template>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="frase-final">
+    <div class="recuadro-azul">
+      <p class="frase-grande">¡<strong>Los límites los pones tú!</strong></p>
+    </div>
+  </div>
+</div>

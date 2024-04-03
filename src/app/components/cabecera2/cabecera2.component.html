@@ -1,0 +1,10 @@
+<div class="cabecera-container">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmQ9Q-C-soyPqJJs9keJRuvhlH6oa3CMtkOA&usqp=CAU" alt="Imagen" class="imagen">
+  <div class="botones-container">
+    <button routerLink="/paginalogin" class="boton" [class.active]="isLoginPage()">Login</button>
+    <button routerLink="/paginaclientes" class="boton" [class.active]="isRegistroPage()">Registrarse</button>
+    <div class="volver-container text-center">
+      <button class="volver-boton" routerLink="/inicio">Volver</button>
+    </div>
+  </div>
+</div>

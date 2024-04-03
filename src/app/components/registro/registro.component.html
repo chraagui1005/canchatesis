@@ -1,0 +1,78 @@
+<div class="container">
+  <div class="text-center">
+    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Real_Madrid_CF.svg/800px-Real_Madrid_CF.svg.png" alt="Imagen encima del titulo" class="imagen-titulo">
+
+    <h1 class="titulo-registro">REGISTRO</h1>
+  </div>
+
+  <form class="formulario-registro" #registroForm="ngForm" (ngSubmit)="submitRegistro(registroForm)">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" maxlength="30" class="form-control" [(ngModel)]="registro.name" #name="ngModel" required>
+      <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+        <div *ngIf="name.errors">
+          <div *ngIf="name.errors">El name es requerido.</div>
+          <div *ngIf="name.errors">El name no puede exceder los 30 caracteres.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="apellido">Apellido:</label>
+      <input type="text" id="apellido" name="apellido" maxlength="30" class="form-control" [(ngModel)]="registro.apellido" #apellido="ngModel" required>
+      <div *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)" class="alert alert-danger">
+        <div *ngIf="apellido.errors">
+          <div *ngIf="apellido.errors">El apellido es requerido.</div>
+          <div *ngIf="apellido.errors">El apellido no puede exceder los 30 caracteres.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="cellphone">Cellphone:</label>
+      <input type="text" id="cellphone" name="cellphone" maxlength="10" class="form-control" [(ngModel)]="registro.cellphone" #cellphone="ngModel" pattern="[0-9]*" (keypress)="validateNumber($event)">
+      <div *ngIf="!cellphone.valid && cellphone.touched" class="alert alert-danger">
+        <div *ngIf="cellphone.errors">El cellphone solo puede contener números.</div>
+        <div *ngIf="cellphone.errors">El cellphone debe contener exactamente 10 dígitos.</div>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" maxlength="30" class="form-control" [(ngModel)]="registro.email" #email="ngModel" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
+      <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+        <div *ngIf="email.errors">
+          <div *ngIf="email.errors">El email electrónico es requerido.</div>
+          <div *ngIf="email.errors">El email electrónico debe tener un formato válido.</div>
+          <div *ngIf="email.errors">El email electrónico no puede exceder los 30 caracteres.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" minlength="8" class="form-control" [(ngModel)]="registro.password" #password="ngModel" required>
+      <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+        <div *ngIf="password.errors">
+          <div *ngIf="password.errors">La password es requerida.</div>
+          <div *ngIf="password.errors">La password debe tener al menos 8 caracteres.</div>
+        </div>
+      </div>
+    </div>
+
+     <!-- Alerta de registro exitoso -->
+  <div *ngIf="registroExitoso" class="alert alert-success text-center">
+    Usuario registrado exitosamente.
+  </div>
+
+  <!-- Alerta de usuario ya existente -->
+  <div *ngIf="registroExistente" class="alert alert-danger text-center">
+    El correo electrónico ya está registrado.
+  </div>
+
+    <div class="text-center">
+      <button type="submit" class="btn-registro">Registrarse</button>
+    </div>
+  </form>
+</div>

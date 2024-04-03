@@ -1,0 +1,14 @@
+/* styles.css */
+.main-container {
+  display: flex;
+  align-items: center; /* Centra verticalmente los elementos */
+}
+
+.header-container {
+  flex: 1; /* El componente de cabecera2 ocupará una fracción del espacio disponible */
+  margin-right: 20px; /* Espacio entre la cabecera y el registro */
+}
+
+.login-container {
+  flex: 2; /* El componente de login ocupará dos veces el espacio de la cabecera */
+}

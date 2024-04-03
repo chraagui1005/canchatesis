@@ -1,0 +1,37 @@
+<div class="cabecera-container">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmQ9Q-C-soyPqJJs9keJRuvhlH6oa3CMtkOA&usqp=CAU" alt="Imagen" class="imagen">
+  <div class="botones-container">
+    <button routerLink="/paginareservas" class="boton" [class.active]="isInicioPage()">Inicio</button>
+    <button routerLink="/paginadisponibilidad" class="boton" [class.active]="isReservarPage()">Reservar</button>
+    <div class="volver-container text-center">
+      <button class="volver-boton" (click)="toggleContactenos()">Contáctenos</button>
+    </div>
+  </div>
+
+  <div class="botones-adicionales">
+    <div class="item">
+      <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Real_Madrid_CF.svg/800px-Real_Madrid_CF.svg.png" alt="Íconos" class="icono">
+      <span class="bienvenido">¡Bienvenido Christian!</span>
+    </div>
+    <div class="item">
+      <span class="texto" (click)="recuperarClave()">Recuperar clave</span>
+    </div>
+    <div class="item">
+      <span class="texto" routerLink="/paginalogin" (click)="cerrarSesion()">Cerrar sesión</span>
+    </div>
+  </div>
+
+  <!-- Cuadro de contactenos -->
+  <div class="contactenos-container" *ngIf="mostrarContactenos">
+    <div class="recuadro">
+      <h4>Contactenos</h4>
+      <p>Números telefónicos:</p>
+      <ul>
+        <li>+1234567890</li>
+        <li>+0987654321</li>
+      </ul>
+      <button class="cerrar-boton" (click)="cerrarContactenos()">Cerrar</button>
+    </div>
+  </div>
+
+</div>

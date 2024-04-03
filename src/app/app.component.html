@@ -1,6 +1,13 @@
-<app-cabecera></app-cabecera>
-<app-inicio></app-inicio>
-<app-navegacion></app-navegacion>
-<div class="fixed-bottom">
-  <app-pie></app-pie>
-</div>
+<!-- app.component.html -->
+<ng-container *ngIf="mostrarComponentesComunes()">
+  <!-- Muestra los componentes comunes -->
+  <app-cabecera></app-cabecera>
+  <app-navegacion></app-navegacion>
+  <app-inicio></app-inicio>
+  <div class="fixed-bottom">
+    <app-pie></app-pie>
+  </div>
+</ng-container>
+
+<!-- Muestra el RouterOutlet solo si no se muestran los componentes comunes -->
+<router-outlet *ngIf="!mostrarComponentesComunes()"></router-outlet>

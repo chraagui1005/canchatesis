@@ -1,0 +1,17 @@
+/* styles.css */
+.main-container {
+  display: flex;
+  align-items: center; /* Centra verticalmente los elementos */
+  height: 100vh; /* Establece la altura del contenedor principal al 100% de la altura de la ventana */
+}
+
+.header-container {
+  flex: 1; /* El componente de cabecera ocupará una fracción del espacio disponible */
+  margin-right: 20px; /* Espacio entre la cabecera y el registro */
+}
+
+.login-container {
+  flex: 2; /* El componente de inicio de sesión ocupará dos veces el espacio de la cabecera */
+  overflow-y: auto; /* Agrega un desplazamiento vertical si el contenido excede la altura del contenedor */
+  max-height: calc(100vh - 40px); /* Establece una altura máxima para el contenedor de inicio de sesión */
+}

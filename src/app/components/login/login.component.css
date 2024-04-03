@@ -1,0 +1,57 @@
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.imagen-titulo {
+  position: relative;
+  top: -50px; /* Posiciona la imagen encima del título */
+  z-index: 1; /* Asegura que la imagen esté sobre el título */
+  width: 100px; /* Ajusta el tamaño de la imagen */
+}
+
+
+.login-title {
+  margin-bottom: 20px;
+}
+
+.login-form {
+  width: 400px; /* Ajusta el ancho del formulario según sea necesario */
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 12px; /* Ajusta el tamaño del campo de entrada */
+  font-size: 18px; /* Ajusta el tamaño de la fuente del campo de entrada */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.btn {
+  width: 100%;
+  padding: 12px; /* Ajusta el tamaño del botón */
+  font-size: 18px; /* Ajusta el tamaño de la fuente del botón */
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+.btn-lg {
+  font-size: 20px; /* Ajusta el tamaño del botón grande */
+}
