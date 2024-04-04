@@ -8,7 +8,8 @@
 <div *ngIf="selectedCourt" class="calendar-container">
   <h2 class="title">Calendario de Disponibilidad</h2>
   <mat-calendar [selected]="selectedDate" (selectedChange)="onDateSelected($event)"></mat-calendar>
-  <div *ngIf="selectedDate && courtEntries.length > 0" class="details">
+
+  <div *ngIf="selectedDate" class="details">
     <h3>Horarios disponibles para el {{ selectedDate | date:'longDate' }}</h3>
     <table class="table">
       <thead>
@@ -17,23 +18,61 @@
           <th>Horario de fin</th>
           <th>Precio de la cancha</th>
           <th>Estado</th>
-          <th>Seleccionar</th>
+          <th>Acción</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let entry of courtEntries">
-          <td>{{ entry.horarioInicio }}</td>
-          <td>{{ entry.horarioFin }}</td>
-          <td>{{ entry.precioCancha }}</td>
-          <td>{{ entry.estado }}</td>
-          <td>
-            <button (click)="seleccionarHorario(entry)" [ngClass]="{ 'selected-button': entry.id === selectedEntry?.id }">
-              {{ entry.id === selectedEntry?.id ? 'Cancelar' : 'Seleccionar' }}
-            </button>
-
-          </td>
-        </tr>
+        <ng-container *ngIf="courtEntries.length > 0; else noReservations">
+          <tr *ngFor="let entry of courtEntries">
+            <td>{{ entry.horarioInicio }}</td>
+            <td>{{ entry.horarioFin }}</td>
+            <td>{{ entry.precioCancha }}</td>
+            <td [style.color]="entry.estado === 'ocupado' ? 'red' : 'inherit'">{{ entry.estado }}</td>
+            <td>
+              <button *ngIf="entry.estado !== 'ocupado'" (click)="seleccionarHorario(entry)" [ngClass]="{ 'selected-button': entry.id === selectedEntry?.id }">
+                {{ entry.id === selectedEntry?.id ? 'Cancelar' : 'Seleccionar' }}
+              </button>
+              <span *ngIf="entry.estado === 'ocupado'" class="estado-ocupado">Ocupado</span>
+            </td>
+          </tr>
+        </ng-container>
       </tbody>
     </table>
   </div>
+
+
+  <ng-template #noReservations>
+    <tr *ngIf="courtEntries.length === 0">
+      <td colspan="5" class="no-reservations-message" style="text-align: center; color: red;">
+        No hay reservas disponibles para el {{ selectedDate | date:'longDate' }}
+      </td>
+    </tr>
+  </ng-template>
+
+  <div class="reserva-bebidas-container" *ngIf="horarioSeleccionado">
+    <h3>¿Desea reservar bebidas?</h3>
+    <label><input type="radio" [(ngModel)]="reservarBebidas" (change)="obtenerBebidas()" [value]="true"> Sí</label>
+    <label><input type="radio" [(ngModel)]="reservarBebidas" (change)="obtenerBebidas()" [value]="false"> No</label>
+    <button *ngIf="!reservarBebidas" (click)="guardar()">Guardar</button>
+
+  </div>
+</div>
+
+<div *ngIf="bebidas.length > 0" class="bebidas-container">
+  <h2 class="title">Bebidas Disponibles</h2>
+  <div *ngFor="let bebida of bebidas" class="bebida-item">
+    <img [src]="bebida.imagenBebida" alt="{{ bebida.bebidaId }}" class="bebida-image">
+    <div class="bebida-details">
+      <p>Nombre: {{ bebida.bebidaId }}</p>
+      <p>Precio: {{ bebida.precioBebida }}</p>
+      <p>Stock: {{ bebida.stockBebida }}</p>
+      <button (click)="seleccionarBebida(bebida)">Seleccionar</button>
+      <div *ngIf="bebidaSeleccionada && bebidaSeleccionada.bebidaId === bebida.bebidaId" class="contador-container">
+        <p>Cantidad: {{ contador }}</p>
+        <button (click)="incrementarContador()" [disabled]="contador >= bebida.stockBebida">+</button>
+        <button (click)="decrementarContador()" [disabled]="contador <= 0">-</button>
+      </div>
+    </div>
+  </div>
+
 </div>

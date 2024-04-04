@@ -1,13 +1,14 @@
 import { Login } from "./login";
+
 export class Reservas {
   constructor(
-    public reservaId: string,
+    public reservaId: string | null,
     public horarioInicio: string,
     public horarioFin: string,
     public canchaNombre: string,
-    public bebidaId: string,
-    public cantidadBebidas: number,
-    public precioTotal: number,
+    public bebidaId: string | null,
+    public cantidadBebidas: number | null,
+    public precioTotal: string,
     public email: string
   ) {}
 
@@ -16,5 +17,3 @@ export class Reservas {
 export interface ReservasResponse {
   data: Reservas;
 }
-
-

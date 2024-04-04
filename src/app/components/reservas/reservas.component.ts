@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ReservasService } from 'src/app/services/reservas.service';
 import { Observable, map } from 'rxjs';
 import { Reservas } from 'src/app/models/reservas';
+import { HttpClient } from '@angular/common/http';
+import { ServicioBebidaService } from 'src/app/services/bebidas.service';
+
 
 
 @Component({
@@ -28,17 +31,26 @@ export class ReservasComponent implements OnInit {
   }
 
   eliminarReserva(reserva: Reservas) {
-    this.reservasService.eliminarReserva(reserva.reservaId).subscribe(
-      () => {
-        // Eliminar la reserva del array local
-        this.reservas = this.reservas.filter(r => r.reservaId !== reserva.reservaId);
-        console.log('Reserva eliminada correctamente');
-      },
-      (error) => {
-        console.error('Error al eliminar la reserva:', error);
-      }
+    // Obtener el ID de reserva del objeto Reservas
+    const reservaId = reserva.reservaId;
+    if (!reservaId) {
+        console.error('ID de reserva no válido.');
+        return;
+    }
+
+    // Llamar al servicio para eliminar la reserva
+    this.reservasService.eliminarReserva2(reservaId).subscribe(
+        () => {
+            console.log('Reserva eliminada con éxito.');
+            this.obtenerReservas(); // Actualizar la lista de reservas después de eliminar una
+            window.location.reload(); // Recarga la página automáticamente
+
+        },
+        (error) => {
+            console.error('Error al eliminar la reserva:', error);
+        }
     );
-  }
+}
 
 
 
