@@ -8,7 +8,7 @@ export class Reservas {
     public canchaNombre: string,
     public bebidaId: string | null,
     public cantidadBebidas: number | null,
-    public precioTotal: string,
+    public precioTotal: number,
     public email: string
   ) {}
 

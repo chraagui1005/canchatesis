@@ -14,6 +14,7 @@ import { ServicioBebidaService } from 'src/app/services/bebidas.service';
 })
 export class ReservasComponent implements OnInit {
   reservas: any[] = [];
+  reservaEliminadaExitosa: boolean = false;
 
   constructor(private reservasService: ReservasService) {}
 
@@ -43,14 +44,24 @@ export class ReservasComponent implements OnInit {
         () => {
             console.log('Reserva eliminada con éxito.');
             this.obtenerReservas(); // Actualizar la lista de reservas después de eliminar una
-            window.location.reload(); // Recarga la página automáticamente
-
-        },
+            // Mostrar la alerta de eliminación exitosa
+            this.mostrarAlertaEliminacionExitosa();
+            setTimeout(() => {
+              window.location.reload();
+            }, 3000);        },
         (error) => {
             console.error('Error al eliminar la reserva:', error);
         }
     );
 }
+
+mostrarAlertaEliminacionExitosa() {
+    this.reservaEliminadaExitosa = true; // Variable para rastrear si se ha eliminado la reserva con éxito
+    setTimeout(() => {
+        this.reservaEliminadaExitosa = false; // Ocultar la alerta después de 3 segundos
+    }, 3000);
+}
+
 
 
 

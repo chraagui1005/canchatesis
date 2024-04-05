@@ -67,3 +67,17 @@
   font-weight: bold; /* Texto en negrita */
   text-align: center; /* Texto centrado */
 }
+
+
+.alert-roja {
+  background-color: #f8d7da; /* Color de fondo rojo claro */
+  border-color: #f5c6cb; /* Color del borde rojo */
+  color: #721c24; /* Color del texto rojo oscuro */
+  padding: 1rem; /* Espaciado interno aumentado */
+  margin: 0 auto; /* Centrar horizontalmente */
+  max-width: 800px; /* Ancho máximo */
+  border: 1px solid transparent; /* Borde transparente */
+  border-radius: 0.25rem; /* Borde redondeado */
+  text-align: center; /* Alinear el texto al centro */
+}
+

@@ -33,6 +33,7 @@
               <button (click)="eliminarReserva(reserva)">Eliminar</button>
             </td>
           </tr>
+
         </ng-container>
         <ng-template #noReservas>
           <tr>
@@ -41,6 +42,9 @@
         </ng-template>
       </tbody>
     </table>
+    <div *ngIf="reservaEliminadaExitosa" class="alert-roja">
+      Reserva eliminada exitosamente.
+  </div>
   </div>
 
   <div class="frase-final">

@@ -4,13 +4,14 @@ import { Bebidas } from 'src/app/models/bebidas';
 import { ServicioBebidaService } from 'src/app/services/bebidas.service';
 import { ReservasService } from 'src/app/services/reservas.service';
 import { Reservas } from 'src/app/models/reservas';
+import { ChangeDetectorRef } from '@angular/core';
 
 interface Court {
   id: number;
   canchaNombre: string;
   horarioInicio: string;
   horarioFin: string;
-  precioCancha: string;
+  precioCancha: number;
   estado: string;
   updated_at: string;
   created_at: string;
@@ -47,10 +48,16 @@ export class DisponibilidadComponent {
   horarioSeleccionado: boolean = false; // Variable para rastrear si se ha seleccionado un horario
   bebidas: Bebida[] = [];
   bebidaSeleccionada: Bebida | null = null;
-  contador: number = 0;
+  bebidaSeleccionada2: boolean = false;
+
+  cantidad: number = 0;
+  reservaGuardada: boolean = false; // Variable para rastrear
+  reservaGuardada2: boolean = false; // Variable para rastrear
+
+  detalleBebida: any[] = [];
 
 
-  constructor(private http: HttpClient, private servicioBebida: ServicioBebidaService, private reservasService: ReservasService) {
+  constructor(private http: HttpClient, private servicioBebida: ServicioBebidaService, private reservasService: ReservasService, private cdr: ChangeDetectorRef) {
     this.fetchCourts();
   }
 
@@ -172,26 +179,31 @@ export class DisponibilidadComponent {
     if (this.bebidaSeleccionada === bebida) {
       // Si es la misma bebida, deseleccionarla
       this.bebidaSeleccionada = null;
-      console.log();
-    } else {
+      console.log(this.bebidaSeleccionada)
+      this.cantidad = 0; // Reiniciar el contador
+
+        } else {
       // Si es una bebida diferente, seleccionarla
       this.bebidaSeleccionada = bebida;
-      this.contador = 0; // Reiniciar el contador
+      this.cantidad = 1; // Reiniciar el contador
     }
   }
 
 
   incrementarContador() {
-    if (this.contador < this.bebidaSeleccionada!.stockBebida) {
-      this.contador++;
-      console.log();
+    if (this.cantidad < this.bebidaSeleccionada!.stockBebida) {
+      this.cantidad++;
+      console.log(this.cantidad);
+      this.cdr.detectChanges(); // Forzar detección de cambios
 
     }
   }
 
   decrementarContador() {
-    if (this.contador > 0) {
-      this.contador--;
+    if (this.cantidad > 0) {
+      this.cantidad--;
+      this.cdr.detectChanges(); // Forzar detección de cambios
+
     }
   }
 
@@ -218,10 +230,55 @@ export class DisponibilidadComponent {
       this.reservasService.agregarReserva(nuevaReserva).subscribe(
         (response) => {
           console.log('Reserva guardada exitosamente:', response);
-          // Mostrar una alerta de reserva guardada exitosamente
-          alert('Reserva guardada exitosamente');
-          // Actualizar la página
-          window.location.reload();
+          // Establecer reservaGuardada en true para mostrar la alerta
+          this.reservaGuardada = true;
+
+          // Actualizar la página después de 2 segundos (2000 milisegundos)
+          setTimeout(() => {
+            window.location.reload();
+          }, 3000);
+        },
+        (error) => {
+          console.error('Error al guardar la reserva:', error);
+          // Manejar el error adecuadamente
+        }
+      );
+    }
+  }
+
+  guardarBebida() {
+    console.log('Reserv', this.reservarBebidas);
+    console.log(this.selectedEntry);
+    console.log('Bebi', this.bebidaSeleccionada);
+
+
+    if (this.reservarBebidas && this.selectedEntry && this.bebidaSeleccionada) {
+      const { horarioInicio, horarioFin, canchaNombre, precioCancha } = this.selectedEntry;
+
+      // Corrige la línea para obtener el precio de la cancha desde selectedEntry
+      const precioTotal = (Number(this.bebidaSeleccionada.precioBebida) * this.cantidad) + Number(precioCancha);
+      console.log(precioTotal);
+      const nuevaReserva: Reservas = {
+        reservaId: null,
+        horarioInicio: horarioInicio,
+        horarioFin: horarioFin,
+        canchaNombre: canchaNombre,
+        bebidaId: this.bebidaSeleccionada.bebidaId,
+        cantidadBebidas: this.cantidad,
+        precioTotal: precioTotal, // Utiliza el precio calculado
+        email: 'prueba@gmail.com'
+      };
+      console.log(nuevaReserva);
+
+      // Llama al servicio para agregar la reserva
+      this.reservasService.agregarReserva(nuevaReserva).subscribe(
+        (response) => {
+          console.log('Reserva guardada exitosamente:', response);
+          // Mostrar la alerta de reserva guardada exitosamente
+          this.reservaGuardada2 = true;
+          setTimeout(() => {
+            window.location.reload();
+          }, 3000);
         },
         (error) => {
           console.error('Error al guardar la reserva:', error);

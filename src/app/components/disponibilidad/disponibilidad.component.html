@@ -27,12 +27,12 @@
             <td>{{ entry.horarioInicio }}</td>
             <td>{{ entry.horarioFin }}</td>
             <td>{{ entry.precioCancha }}</td>
-            <td [style.color]="entry.estado === 'ocupado' ? 'red' : 'inherit'">{{ entry.estado }}</td>
+            <td [ngStyle]="{'color': entry.estado === 'Ocupado' ? 'red' : 'inherit', 'display': entry.estado === 'Ocupado' ? 'none' : 'table-cell'}">{{ entry.estado }}</td>
             <td>
-              <button *ngIf="entry.estado !== 'ocupado'" (click)="seleccionarHorario(entry)" [ngClass]="{ 'selected-button': entry.id === selectedEntry?.id }">
+              <button *ngIf="entry.estado !== 'Ocupado'" (click)="seleccionarHorario(entry)" [ngClass]="{ 'selected-button': entry.id === selectedEntry?.id }">
                 {{ entry.id === selectedEntry?.id ? 'Cancelar' : 'Seleccionar' }}
               </button>
-              <span *ngIf="entry.estado === 'ocupado'" class="estado-ocupado">Ocupado</span>
+              <span *ngIf="entry.estado === 'Ocupado'" style="color: red;">Ocupado</span>
             </td>
           </tr>
         </ng-container>
@@ -40,9 +40,8 @@
     </table>
   </div>
 
-
   <ng-template #noReservations>
-    <tr *ngIf="courtEntries.length === 0">
+    <tr>
       <td colspan="5" class="no-reservations-message" style="text-align: center; color: red;">
         No hay reservas disponibles para el {{ selectedDate | date:'longDate' }}
       </td>
@@ -53,9 +52,13 @@
     <h3>¿Desea reservar bebidas?</h3>
     <label><input type="radio" [(ngModel)]="reservarBebidas" (change)="obtenerBebidas()" [value]="true"> Sí</label>
     <label><input type="radio" [(ngModel)]="reservarBebidas" (change)="obtenerBebidas()" [value]="false"> No</label>
-    <button *ngIf="!reservarBebidas" (click)="guardar()">Guardar</button>
+    <button *ngIf="!reservarBebidas" (click)="guardar()" class="btn-guardar">Guardar</button>
+    <div *ngIf="reservaGuardada" class="alert-success">
+      Reserva guardada exitosamente.
+    </div>
 
   </div>
+
 </div>
 
 <div *ngIf="bebidas.length > 0" class="bebidas-container">
@@ -68,11 +71,18 @@
       <p>Stock: {{ bebida.stockBebida }}</p>
       <button (click)="seleccionarBebida(bebida)">Seleccionar</button>
       <div *ngIf="bebidaSeleccionada && bebidaSeleccionada.bebidaId === bebida.bebidaId" class="contador-container">
-        <p>Cantidad: {{ contador }}</p>
-        <button (click)="incrementarContador()" [disabled]="contador >= bebida.stockBebida">+</button>
-        <button (click)="decrementarContador()" [disabled]="contador <= 0">-</button>
+        <p>Cantidad: {{ cantidad }}</p>
+        <button (click)="incrementarContador()" [disabled]="cantidad >= bebida.stockBebida">+</button>
+        <button (click)="decrementarContador()" [disabled]="cantidad <= 0">-</button>
       </div>
     </div>
   </div>
+  <div *ngIf="bebidaSeleccionada" class="contador-container">
+    <button (click)="guardarBebida()" class="btn btn-primary mx-auto d-block">Guardar</button>
+    <div *ngIf="reservaGuardada2" class="alert-success">
+      Reserva guardada exitosamente.
+    </div>
+  </div>
+
 
 </div>
